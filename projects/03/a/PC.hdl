@@ -16,5 +16,10 @@ CHIP PC {
     OUT out[16];
 
     PARTS:
-    // Put your code here:
+    Inc16(in=out9, out=next);
+    // reverse the conditions order to implement `else if`
+    Mux16(a=out9, b=next, sel=inc, out=out0);
+    Mux16(a=out0, b=in, sel=load, out=out1);
+    Mux16(a=out1, b=false, sel=reset, out=out2);
+    Register(in=out2, load=true, out=out, out=out9);
 }
