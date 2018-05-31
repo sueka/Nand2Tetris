@@ -12,49 +12,45 @@
 // the screen should remain fully clear as long as no key is pressed.
 
 (LOOP)
+  @i
+  M=1
   @KBD
   D=M
-  @CLS
+  @CLS_LOOP
   D;JEQ
-  @FILL
+  @FILL_LOOP
   0;JMP
 
-(CLS)
+(CLS_LOOP)
   @i
-  M=1
-  (CLS_LOOP)
-    @i
-    D=M
-    @8192
-    D=D-A
-    @LOOP
-    D;JGT
-    @i
-    D=M-1
-    @SCREEN
-    A=D+A
-    M=0
-    @i
-    M=M+1
-    @CLS_LOOP
-    0;JMP
+  D=M
+  @8192
+  D=D-A
+  @LOOP
+  D;JGT
+  @i
+  D=M-1
+  @SCREEN
+  A=D+A
+  M=0
+  @i
+  M=M+1
+  @CLS_LOOP
+  0;JMP
 
-(FILL)
+(FILL_LOOP)
   @i
-  M=1
-  (FILL_LOOP)
-    @i
-    D=M
-    @8192
-    D=D-A
-    @LOOP
-    D;JGT
-    @i
-    D=M-1
-    @SCREEN
-    A=D+A
-    M=-1
-    @i
-    M=M+1
-    @FILL_LOOP
-    0;JMP
+  D=M
+  @8192
+  D=D-A
+  @LOOP
+  D;JGT
+  @i
+  D=M-1
+  @SCREEN
+  A=D+A
+  M=-1
+  @i
+  M=M+1
+  @FILL_LOOP
+  0;JMP
